@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: mariadb:10.5
+    image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: todo_app
@@ -10,6 +10,15 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+
+  backend:
+    build: ./todo-backend
+    environment:
+      - DATABASE_URL=mysql://root:password@localhost:3306/todo_app
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
 
 volumes:
   db_data:
