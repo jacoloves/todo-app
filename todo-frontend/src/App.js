@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -23,7 +25,7 @@ function App() {
   };
 
   const toggleTask = (id) => {
-    axios.put(`http://locahost:8081/tasks/${id}/toggle`)
+    axios.put(`http://localhost:8081/tasks/${id}/toggle`)
       .then(response => {
         setTasks(tasks.map(task => task.id === id ? response.data : task));
       })
@@ -40,18 +42,18 @@ function App() {
 
   return (
     <div className="App container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">TODO App</h1>
-      <div className="mb-4">
+      <h1 className="text-3xl font-bold mb-4">TODO App</h1>
+      <div className="flex mb-4">
         <input
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
-          className="border p-2 mr-2"
+          className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2"
           placeholder="Add a new task"
         />
-        <button onClick={addTask} className="bg-blue-500 text-white p-2">Add</button>
+        <button onClick={addTask} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add</button>
       </div>
-      <ul>
+      <ul className="list-disc pl-5">
         {tasks.map(task => (
           <li key={task.id} className="flex items-center mb-2">
             <input
@@ -61,7 +63,9 @@ function App() {
               className="mr-2"
             />
             <span className={task.completed ? 'line-through' : ''}>{task.text}</span>
-            <button onClick={() => deleteTask(task.id)} className="bg-red-500 text-white p-1 ml-2">Delete</button>
+            <button onClick={() => deleteTask(task.id)} className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded ml-2">
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
           </li>
         ))}
       </ul>
