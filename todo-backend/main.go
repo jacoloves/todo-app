@@ -10,7 +10,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var client = db.NewClient()
+var client *db.PrismaClient
+
+func init() {
+	client = db.NewClient()
+}
 
 func main() {
 	r := gin.Default()
