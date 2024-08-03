@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"todo-backend/prisma/db"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,6 +19,8 @@ func init() {
 
 func main() {
 	r := gin.Default()
+
+	r.Use(cors.Default())
 
 	err := client.Connect()
 	if err != nil {
