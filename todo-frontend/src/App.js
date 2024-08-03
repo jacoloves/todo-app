@@ -40,6 +40,12 @@ function App() {
       .catch(error => console.error('Error deleteing task:', error));
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      addTask();
+    }
+  };
+
   return (
     <div className="App container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">TODO App</h1>
@@ -48,12 +54,13 @@ function App() {
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
-          className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2"
+          onKeyPress={handleKeyPress}
+          className="border-2 border-black rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2"
           placeholder="Add a new task"
         />
         <button onClick={addTask} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add</button>
       </div>
-      <ul className="list-disc pl-5">
+      <ul className="list-disc pl-5 border-t border-gray-300 pt-4">
         {tasks.map(task => (
           <li key={task.id} className="flex items-center mb-2">
             <input
