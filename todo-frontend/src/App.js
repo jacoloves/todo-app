@@ -39,7 +39,7 @@ function App() {
   };
 
   return (
-    <div className="App" container mx-auto p-4>
+    <div className="App container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">TODO App</h1>
       <div className="mb-4">
         <input
