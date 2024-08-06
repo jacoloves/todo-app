@@ -12,8 +12,8 @@ This is a simple TODO application built with Go, React, and TailwindCSS. The app
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/your-username/your-repository-name.git
-   cd your-repository-name
+   git clone https://github.com/jacoloves/todo-app.git
+   cd todo-app
    ```
 
 2. Start the application using Docker Compose:
